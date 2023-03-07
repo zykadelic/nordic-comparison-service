@@ -7,7 +7,7 @@ const urlQuerify = (params) => {
   return filteredKeys.map(key => `${key}=${params[key]}`).join('&');
 }
 
-function blobToBase64(blob) {
+const blobToBase64 = (blob) => {
   return new Promise((resolve, _) => {
     const reader = new FileReader();
     reader.onloadend = () => resolve(reader.result);
@@ -15,4 +15,11 @@ function blobToBase64(blob) {
   });
 }
 
-export { findKeyByValue, urlQuerify, blobToBase64 };
+const formatUSD = (number) => {
+  return Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+  }).format(number);
+}
+
+export { findKeyByValue, urlQuerify, blobToBase64, formatUSD };

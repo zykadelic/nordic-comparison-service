@@ -19,7 +19,12 @@ const Form = ({ setCelebrity }) => {
   }, [country]);
 
   return (
-    <form action={API_CELEBRITY_URL} method="get" onSubmit={handleSubmit}>
+    <form
+      action={API_CELEBRITY_URL}
+      method="get"
+      onSubmit={handleSubmit}
+      id="form"
+    >
       <Input
         field="name"
         initialValue={name}
@@ -31,7 +36,7 @@ const Form = ({ setCelebrity }) => {
         changeHandler={setCountry}
         options={COUNTRIES}
       />
-      <button type="submit">Match</button>
+      <button type="submit">Find match</button>
     </form>
   );
 };

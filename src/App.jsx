@@ -6,10 +6,10 @@ const App = () => {
   const [celebrity, setCelebrity] = useState({});
 
   return (
-    <>
+    <div id="app">
       <Form setCelebrity={setCelebrity} />
       <Result celebrity={celebrity} />
-    </>
+    </div>
   );
 };
 

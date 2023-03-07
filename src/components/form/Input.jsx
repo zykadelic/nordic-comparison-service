@@ -59,34 +59,38 @@ const Input = ({ field, initialValue, changeHandler, options = {} }) => {
   }, [value]);
 
   return (
-    <label style={{ display: 'block' }}>
-      <span>{label}</span><br />
-      <input
-        name={field}
-        value={value}
-        onFocus={handleFocus}
-        onChange={handleChange}
-        onBlur={handleBlur}
-        autoComplete={hasOptions ? 'off' : 'on'}
-        style={error ? { borderColor: 'red' } : {}}
-      />
-      {showSuggestions && (
-        !!Object.keys(suggestions).length ? (
-          <ol>
-            {Object.keys(suggestions).map((key) => (
-              <li
-                key={key}
-                onMouseDown={() => setValue(suggestions[key])}
-              >
-                {suggestions[key]}
-              </li>
-            ))}
-          </ol>
-        ) : (
-          <ol><li>No results 😲</li></ol>
-        )
+    <>
+      <label>
+        <span>{label}</span><br />
+        <input
+          name={field}
+          value={value}
+          onFocus={handleFocus}
+          onChange={handleChange}
+          onBlur={handleBlur}
+          autoComplete={hasOptions ? 'off' : 'on'}
+          style={error ? { borderColor: 'red' } : {}}
+        />
+      </label>
+      {hasOptions && (
+        <ol className="suggestions">
+          {showSuggestions && (
+            !!Object.keys(suggestions).length ? (
+              Object.keys(suggestions).map((key) => (
+                <li
+                  key={key}
+                  onMouseDown={() => setValue(suggestions[key])}
+                >
+                  {suggestions[key]}
+                </li>
+              ))
+            ) : (
+              <li>No results 😲</li>
+            )
+          )}
+        </ol>
       )}
-    </label>
+    </>
   );
 };
 
